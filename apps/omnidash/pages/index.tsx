@@ -1,4 +1,4 @@
-export function Index() {
+const Index = () => {
   return <div>Omnidash</div>
 }
 

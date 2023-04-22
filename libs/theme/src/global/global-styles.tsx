@@ -1,7 +1,7 @@
 import { Global } from '@mantine/core'
 import { Public_Sans } from '@next/font/google'
 
-const publicSans = Public_Sans({ subsets: ['latin'] })
+const font = Public_Sans({ subsets: ['latin'] })
 
 export const GlobalStyles = () => {
   return (
@@ -17,7 +17,7 @@ export const GlobalStyles = () => {
 
         body: {
           ...theme.fn.fontStyles(),
-          ...publicSans.style,
+          ...font.style,
           height: '100vh',
           overflow: 'hidden',
         },

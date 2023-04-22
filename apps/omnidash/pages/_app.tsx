@@ -1,12 +1,17 @@
 import { ThemeProvider } from '@omnidash/theme'
-import { AppProps } from 'next/app'
+import type { NextComponentType } from 'next'
+import { AppContext, AppInitialProps, AppLayoutProps } from 'next/app'
+import { ReactNode } from 'react'
 
-export default function App(props: AppProps) {
-  const { Component, pageProps } = props
+const App: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
+  Component,
+  pageProps,
+}: AppLayoutProps) => {
+  const getLayout = Component.getLayout || ((page: ReactNode) => page)
 
   return (
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ThemeProvider>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
   )
 }
+
+export default App
