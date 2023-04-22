@@ -1,18 +1,12 @@
-import { AppProps } from "next/app";
-import Head from "next/head";
-import "./styles.css";
+import { ThemeProvider } from '@omnidash/theme'
+import { AppProps } from 'next/app'
 
-function CustomApp({ Component, pageProps }: AppProps) {
+export default function App(props: AppProps) {
+  const { Component, pageProps } = props
+
   return (
-    <>
-      <Head>
-        <title>Welcome to omnidash!</title>
-      </Head>
-      <main className="app">
-        <Component {...pageProps} />
-      </main>
-    </>
-  );
+    <ThemeProvider>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
 }
-
-export default CustomApp;

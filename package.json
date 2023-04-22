@@ -2,17 +2,33 @@
   "name": "omnixenon-dashboard",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "nx serve omnidash"
+  },
   "private": true,
   "dependencies": {
-    "@emotion/react": "11.10.6",
-    "@emotion/server": "11.10.0",
+    "@emotion/react": "^11.10.6",
+    "@emotion/server": "^11.10.0",
     "@emotion/styled": "11.10.6",
+    "@mantine/core": "^6.0.8",
+    "@mantine/dates": "^6.0.8",
+    "@mantine/dropzone": "^6.0.7",
+    "@mantine/form": "^6.0.8",
+    "@mantine/hooks": "^6.0.8",
+    "@mantine/modals": "^6.0.8",
+    "@mantine/next": "^6.0.8",
+    "@mantine/notifications": "^6.0.8",
+    "@mantine/nprogress": "^6.0.8",
+    "@mantine/spotlight": "^6.0.8",
+    "@next/font": "^13.1.1",
     "@nrwl/next": "15.9.2",
-    "next": "13.1.1",
+    "dayjs": "^1.11.7",
+    "iconify": "^1.4.0",
+    "next": "^13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
