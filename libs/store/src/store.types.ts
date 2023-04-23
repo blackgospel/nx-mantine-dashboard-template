@@ -1,8 +1,10 @@
 import { StateCreator } from 'zustand'
-import { INavbarSlice } from './navbar/navbar.types'
+import { IAuthSlice } from './auth'
+import { INavbarSlice } from './navbar'
 
 export type IStore = {
   navbar: INavbarSlice
+  auth: IAuthSlice
 }
 
 export type IStoreMiddlewares = [['zustand/immer', never]]

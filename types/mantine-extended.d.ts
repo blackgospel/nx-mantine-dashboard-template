@@ -1,10 +1,9 @@
 import '@emotion/react'
-import { DefaultMantineColor, MantineTheme, Tuple } from '@mantine/core'
-import { ThemePalette } from '../libs/theme/src/palette'
+import { MantineTheme, Tuple } from '@mantine/core'
 import { ThemeTransitions } from '../libs/theme/src/transition'
 import { ThemeTypography } from '../libs/theme/src/typography'
 
-type ExtendedCustomColors = keyof typeof ThemePalette | DefaultMantineColor
+type ExtendedCustomColors = keyof typeof DefaultMantineColor
 
 declare module '@emotion/react' {
   export interface Theme extends MantineTheme {}

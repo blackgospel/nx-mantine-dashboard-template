@@ -22,7 +22,7 @@ export const _Page = React.forwardRef<HTMLDivElement, IPageProps>(
     return (
       <>
         <Head>
-          <title>{`${title} | X-Ray`}</title>
+          <title>{`${title} | Omnidash`}</title>
           {meta}
         </Head>
 

@@ -2,9 +2,7 @@ import { MantineThemeComponents } from '@mantine/styles/lib/theme/types/MantineT
 
 export const ThemedActionIcon: MantineThemeComponents = {
   ActionIcon: {
-    defaultProps: {
-      variant: 'filled',
-    },
+    defaultProps: {},
     styles: theme => ({
       root: {
         ...theme.other.transitions(),
