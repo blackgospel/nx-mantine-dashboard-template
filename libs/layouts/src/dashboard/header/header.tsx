@@ -1,13 +1,17 @@
 import {
   Box,
   Burger,
+  Divider,
+  Group,
   Header,
   MediaQuery,
-  Text,
   useMantineTheme,
 } from '@mantine/core'
 import { useStore } from '@omnidash/store'
+import { AccountPopover } from './account-popover'
 import { IDashboardHeaderProps } from './header.types'
+import { NotificationPopover } from './notification-popover'
+import { SearchBar } from './search-bar'
 
 export const DashboardHeader: React.FC<IDashboardHeaderProps> = () => {
   const theme = useMantineTheme()
@@ -17,7 +21,7 @@ export const DashboardHeader: React.FC<IDashboardHeaderProps> = () => {
   } = useStore.use.navbar()
 
   return (
-    <Header height={{ base: 50, md: 70 }} p="md">
+    <Header height={{ base: 60 }} p="md">
       <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
           <Burger
@@ -29,7 +33,20 @@ export const DashboardHeader: React.FC<IDashboardHeaderProps> = () => {
           />
         </MediaQuery>
 
-        <Text>Application header</Text>
+        <Group position="apart" sx={{ width: '100%' }}>
+          <Box></Box>
+
+          <Box>
+            <Group>
+              <SearchBar />
+              <NotificationPopover />
+
+              <Divider orientation="vertical" />
+
+              <AccountPopover />
+            </Group>
+          </Box>
+        </Group>
       </Box>
     </Header>
   )

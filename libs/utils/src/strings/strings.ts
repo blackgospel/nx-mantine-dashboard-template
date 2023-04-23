@@ -28,7 +28,7 @@ export const toCamel = (str: string): string => {
  * @returns The title-cased version of the input string.
  */
 export const toTitle = (str: string): string => {
-  return str
+  return toKebab(str)
     .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ')

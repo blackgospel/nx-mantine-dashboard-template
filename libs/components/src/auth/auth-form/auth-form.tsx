@@ -41,7 +41,7 @@ export const AuthForm = () => {
               Google
             </Button>
             <Button
-              leftIcon={<Icon icon="basil:facebook-solid" />}
+              leftIcon={<Icon icon="fe:github-alt" />}
               sx={theme => ({
                 backgroundColor: theme.colors.blue[7],
                 color: theme.white,
@@ -50,7 +50,7 @@ export const AuthForm = () => {
                 },
               })}
             >
-              Facebook
+              Github
             </Button>
           </Group>
 

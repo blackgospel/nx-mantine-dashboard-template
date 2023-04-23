@@ -1,9 +1,8 @@
 import { Box, createPolymorphicComponent } from '@mantine/core'
 import React from 'react'
-
 import { ILogoProps } from './logo.types'
 
-export const _Logo = React.forwardRef<HTMLDivElement, ILogoProps>(
+const _Logo = React.forwardRef<HTMLDivElement, ILogoProps>(
   ({ color = 'gray', sx, ...props }, ref) => {
     return (
       <Box

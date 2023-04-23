@@ -1,15 +1,20 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { hasLength, isEmail, useForm } from '@mantine/form'
 import { useToggle } from '@mantine/hooks'
-import { login, register } from '@omnidash/api'
+import { register } from '@omnidash/api'
 import { to } from '@omnidash/config'
 import { useLoading } from '@omnidash/hooks'
+import { PATH_AFTER_LOGIN } from '@omnidash/routes'
 import { IRegisterSchema } from '@omnidash/schema'
 import { AxiosError } from 'axios'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { useCallback, useMemo } from 'react'
+import { errorNotification, successNotification } from '../../notifications'
 import { AUTH_FORM_MAP } from './auth-form.constants'
 
 export const useAuthForm = () => {
+  const router = useRouter()
   const [type, toggle] = useToggle(Object.values(AUTH_FORM_MAP))
   const [loading, { toggle: toggleLoading }] = useLoading()
   const isLogin = useMemo(() => type === AUTH_FORM_MAP.LOGIN, [type])
@@ -46,9 +51,30 @@ export const useAuthForm = () => {
       toggleLoading()
 
       if (isLogin) {
-        const [error, response] = await to<unknown, AxiosError>(login(values))
-        console.log({ login: { response, error } })
-        toggleLoading()
+        signIn('credentials', {
+          ...values,
+          redirect: false,
+        }).then(callback => {
+          toggleLoading()
+          if (callback?.ok) {
+            successNotification({
+              title: `Successful Login`,
+              message: `Welcome back`,
+            })
+
+            setTimeout(() => {
+              router.push(PATH_AFTER_LOGIN)
+            }, 1000)
+          }
+
+          if (callback?.error) {
+            errorNotification({
+              title: `Network Error`,
+              message: `Error occurred: ${callback?.error}`,
+            })
+          }
+        })
+
         return
       }
 

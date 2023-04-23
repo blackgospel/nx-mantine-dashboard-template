@@ -1,10 +1,9 @@
 import { Box, createPolymorphicComponent } from '@mantine/core'
-import React from 'react'
-
 import Head from 'next/head'
+import React from 'react'
 import { IPageProps } from './page.types'
 
-export const _Page = React.forwardRef<HTMLDivElement, IPageProps>(
+const _Page = React.forwardRef<HTMLDivElement, IPageProps>(
   (
     {
       color,

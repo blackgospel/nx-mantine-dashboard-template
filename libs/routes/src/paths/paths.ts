@@ -12,8 +12,6 @@ export const PATH_DASHBOARD = {
 
 export const PATH_AUTH = {
   root: ROOTS_AUTH,
-  login: createPath(ROOTS_AUTH, '/login'),
-  register: createPath(ROOTS_AUTH, '/register'),
 }
 
 export const PATH_MISC = {

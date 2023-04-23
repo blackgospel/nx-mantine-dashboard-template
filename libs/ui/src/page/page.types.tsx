@@ -1,12 +1,9 @@
-import { DefaultProps, Selectors } from '@mantine/core'
+import { DefaultProps } from '@mantine/core'
 import React from 'react'
-import { useStyles } from './page.styles'
-
-export type IPageStylesNames = Selectors<typeof useStyles>
 
 export interface IPageProps
   extends React.ComponentPropsWithoutRef<'div'>,
-    DefaultProps<IPageStylesNames> {
+    DefaultProps<any> {
   /** React child */
   children?: React.ReactNode
 

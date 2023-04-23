@@ -1,7 +1,7 @@
 import { ILoginSchema, IRegisterSchema } from '@omnidash/schema'
 import { axiosInstance } from '../instance'
 
-const ENDPOINT_ROOT = '/auth'
+const ENDPOINT_ROOT = ''
 
 const ENDPOINTS = {
   LOGIN: `${ENDPOINT_ROOT}/login`,
