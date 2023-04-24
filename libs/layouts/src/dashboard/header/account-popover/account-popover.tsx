@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker'
 import {
   ActionIcon,
   Avatar,
@@ -18,7 +17,6 @@ export const AccountPopover = () => {
   const { replace } = useRouter()
   const [popoverOpened, { open, close, toggle }] = useDisclosure(false)
   const { data: session } = useSession()
-  const image = faker.internet.avatar()
 
   const handleLogout = async () => {
     signOut()
@@ -35,7 +33,11 @@ export const AccountPopover = () => {
           onClick={toggle}
           sx={{ width: 32, height: 32 }}
         >
-          <Avatar src={image} alt={session?.user?.name ?? 'N/A'} radius="xl" />
+          <Avatar
+            src={session?.user?.image}
+            alt={session?.user?.name ?? 'N/A'}
+            radius="xl"
+          />
         </ActionIcon>
       }
       width={200}

@@ -1,0 +1,133 @@
+import { Box, Center, Divider, TextInput } from '@mantine/core'
+import { useDisclosure, useInputState } from '@mantine/hooks'
+import { useStore } from '@omnidash/store'
+import { Iconify, MenuPopover } from '@omnidash/ui'
+import { isEmpty } from 'ramda'
+import { useMemo } from 'react'
+
+export const SearchTabs = () => {
+  const [value, setValue] = useInputState('')
+  const [popoverOpened, { open, close }] = useDisclosure(false)
+  const {
+    tabs,
+    actions: { navigateGlobalTab },
+  } = useStore.use.globalTabs()
+
+  const handleClick = (id: string) => () => {
+    navigateGlobalTab(id)
+    // close()
+  }
+
+  const filteredData = useMemo(() => {
+    if (isEmpty(value)) return tabs
+
+    /**
+     * TODO: Better fuzzy search
+     */
+    return tabs.filter(({ label }) =>
+      label.toLowerCase().includes(value.toLowerCase())
+    )
+  }, [tabs, value])
+
+  return (
+    <MenuPopover
+      opened={popoverOpened}
+      onOpen={open}
+      onClose={close}
+      trigger={
+        <Center
+          sx={theme => {
+            const colors = theme.fn.variant({ variant: 'default' })
+            return {
+              width: 42,
+              color: colors.color,
+              cursor: 'pointer',
+              borderLeft: `1px solid ${colors.border}`,
+              ...theme.fn.hover({
+                backgroundColor: colors.background,
+              }),
+            }
+          }}
+        >
+          <Iconify icon="solar:calendar-search-bold" />
+        </Center>
+      }
+      width={250}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          paddingBlock: 14,
+          paddingInline: 18,
+        }}
+      >
+        <Box sx={{ flexGrow: 1 }}>
+          <TextInput
+            placeholder="Search tabs"
+            value={value}
+            onChange={setValue}
+          />
+        </Box>
+      </Box>
+
+      <Divider sx={{ borderStyle: 'dashed' }} />
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          paddingBlock: 14,
+        }}
+      >
+        {filteredData.map(({ id, label }) => {
+          return (
+            <Box
+              key={id}
+              onClick={handleClick(id)}
+              sx={theme => ({
+                ...theme.fn.fontStyles(),
+                WebkitTapHighlightColor: 'transparent',
+                fontSize: theme.fontSizes.sm,
+                border: 0,
+                backgroundColor: 'transparent',
+                outline: 0,
+                width: '100%',
+                textAlign: 'left',
+                textDecoration: 'none',
+                boxSizing: 'border-box',
+                padding: `${theme.spacing.xs} ${theme.spacing.lg}`,
+                cursor: 'pointer',
+                color:
+                  theme.colorScheme === 'dark'
+                    ? theme.colors.dark[0]
+                    : theme.black,
+                display: 'flex',
+                alignItems: 'center',
+
+                '&:disabled': {
+                  color:
+                    theme.colorScheme === 'dark'
+                      ? theme.colors.dark[3]
+                      : theme.colors.gray[5],
+                  pointerEvents: 'none',
+                  userSelect: 'none',
+                },
+
+                ...theme.fn.hover({
+                  backgroundColor:
+                    theme.colorScheme === 'dark'
+                      ? theme.fn.rgba(theme.colors.dark[3], 0.35)
+                      : theme.colors.gray[1],
+                }),
+              })}
+            >
+              <Box sx={{ flex: 1 }}>{label}</Box>
+            </Box>
+          )
+        })}
+      </Box>
+    </MenuPopover>
+  )
+}

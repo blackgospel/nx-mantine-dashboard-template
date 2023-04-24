@@ -62,14 +62,14 @@ export const useAuthForm = () => {
               message: `Welcome back`,
             })
 
-            setTimeout(() => {
+            return setTimeout(() => {
               router.push(PATH_AFTER_LOGIN)
             }, 1000)
           }
 
           if (callback?.error) {
             errorNotification({
-              title: `Network Error`,
+              title: `Auth Error`,
               message: `Error occurred: ${callback?.error}`,
             })
           }
@@ -78,8 +78,23 @@ export const useAuthForm = () => {
         return
       }
 
-      const [error, response] = await to<unknown, AxiosError>(register(values))
-      console.log({ register: { response, error } })
+      const [error] = await to<unknown, AxiosError>(register(values))
+
+      if (error) {
+        return errorNotification({
+          title: `Auth Error`,
+          message: `Error occurred: ${error}`,
+        })
+      }
+
+      successNotification({
+        title: `Successful Registration`,
+        message: `Welcome to Omnidash`,
+      })
+
+      setTimeout(() => {
+        router.push(PATH_AFTER_LOGIN)
+      }, 1000)
 
       toggleLoading()
     },

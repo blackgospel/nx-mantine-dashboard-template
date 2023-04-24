@@ -14,6 +14,7 @@ import {
   Title,
 } from '@mantine/core'
 import { toTitle } from '@omnidash/utils'
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useAuthForm } from './auth-form.hooks'
 
@@ -37,18 +38,20 @@ export const AuthForm = () => {
               leftIcon={<Icon icon="basil:google-solid" />}
               variant="default"
               color="gray"
+              onClick={() => signIn('google')}
             >
               Google
             </Button>
             <Button
               leftIcon={<Icon icon="fe:github-alt" />}
               sx={theme => ({
-                backgroundColor: theme.colors.blue[7],
+                backgroundColor: theme.colors.pink[7],
                 color: theme.white,
                 '&:not([data-disabled]):hover': {
-                  backgroundColor: theme.fn.darken(theme.colors.blue[7], 0.1),
+                  backgroundColor: theme.fn.darken(theme.colors.pink[7], 0.1),
                 },
               })}
+              onClick={() => signIn('github')}
             >
               Github
             </Button>

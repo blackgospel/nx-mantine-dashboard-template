@@ -15,8 +15,7 @@ export const useCreateTheme = () => {
       colorScheme,
       fontFamily: 'Public Sans',
       components: ThemeComponentsOverrides,
-      primaryColor: 'violet',
-      primaryShade: { light: 5, dark: 4 },
+      primaryColor: 'grape',
       other: {
         typography: ThemeTypography,
         transitions: ThemeTransitions,

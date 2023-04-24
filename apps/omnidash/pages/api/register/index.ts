@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker'
 import bcrypt from 'bcrypt'
 import { NextApiRequest, NextApiResponse } from 'next'
 
@@ -13,6 +14,7 @@ export default async function handler(
     data: {
       email,
       name,
+      image: faker.internet.avatar(),
       hashedPassword,
     },
   })
