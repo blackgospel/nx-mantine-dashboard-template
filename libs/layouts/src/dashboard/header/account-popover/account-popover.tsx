@@ -8,13 +8,11 @@ import {
   Title,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { MenuPopover } from '@omnidash/ui'
+import { MenuItem, MenuPopover } from '@omnidash/ui'
 import { toTitle } from '@omnidash/utils'
 import { signOut, useSession } from 'next-auth/react'
-import { useRouter } from 'next/router'
 
 export const AccountPopover = () => {
-  const { replace } = useRouter()
   const [popoverOpened, { open, close, toggle }] = useDisclosure(false)
   const { data: session } = useSession()
 
@@ -63,14 +61,14 @@ export const AccountPopover = () => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          paddingBlock: 14,
-          paddingInline: 18,
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
-          <Text size="sm">Menu Item 1</Text>
-          <Text size="sm">Menu Item 2</Text>
-          <Text size="sm">Menu Item 3</Text>
+          {Array(5)
+            .fill(0)
+            .map((_, index) => {
+              return <MenuItem primary>Menu Item {index}</MenuItem>
+            })}
         </Box>
       </Box>
 

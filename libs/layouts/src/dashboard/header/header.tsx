@@ -39,6 +39,7 @@ export const DashboardHeader: React.FC<IDashboardHeaderProps> = () => {
           <Box>
             <Group>
               <SearchBar />
+
               <NotificationPopover />
 
               <Divider orientation="vertical" />

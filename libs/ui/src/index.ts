@@ -1,5 +1,6 @@
 export * from './iconify'
 export * from './logo'
+export * from './menu-item'
 export * from './menu-popover'
 export * from './page'
 export * from './router-transition'

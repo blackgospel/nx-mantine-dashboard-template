@@ -10,8 +10,8 @@ export const ThemedInput: MantineThemeComponents = {
         '&:focus, &:focus-within': {
           borderColor:
             theme.colorScheme === 'dark'
-              ? theme.colors.violet[2]
-              : theme.colors.violet[3],
+              ? theme.fn.themeColor(theme.primaryColor, 2)
+              : theme.fn.themeColor(theme.primaryColor, 3),
           color:
             theme.colorScheme === 'dark'
               ? theme.colors.gray[2]
