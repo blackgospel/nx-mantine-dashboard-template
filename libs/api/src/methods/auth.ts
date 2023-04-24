@@ -1,18 +1,14 @@
-import { ILoginSchema, IRegisterSchema } from '@omnidash/schema'
+import { IRegisterSchema } from '@omnidash/schema'
+import { AxiosResponse } from 'axios'
+import { User } from 'next-auth'
 import { axiosInstance } from '../instance'
 
 const ENDPOINT_ROOT = ''
 
 const ENDPOINTS = {
-  LOGIN: `${ENDPOINT_ROOT}/login`,
   REGISTER: `${ENDPOINT_ROOT}/register`,
+  GET_CURRENT_USER: `${ENDPOINT_ROOT}/auth/get-current-user`,
 }
-
-export const login = ({ email, password }: ILoginSchema) =>
-  axiosInstance.post(ENDPOINTS.LOGIN, {
-    email,
-    password,
-  })
 
 export const register = ({ name, email, password }: IRegisterSchema) =>
   axiosInstance.post(ENDPOINTS.REGISTER, {
@@ -20,3 +16,8 @@ export const register = ({ name, email, password }: IRegisterSchema) =>
     email,
     password,
   })
+
+export const getCurrentUser = () =>
+  axiosInstance.get<never, AxiosResponse<never, User>>(
+    ENDPOINTS.GET_CURRENT_USER
+  )

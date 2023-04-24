@@ -2,17 +2,12 @@ import { IStateCreator } from '../store.types'
 import { IAuthSlice } from './auth.types'
 
 export const createAuthSlice: IStateCreator<IAuthSlice> = (set, get) => ({
-  token: null,
+  user: null,
 
   actions: {
-    login: () => {
+    setUser: payload => {
       set(state => {
-        state.auth.token = null
-      })
-    },
-    register: () => {
-      set(state => {
-        state.auth.token = null
+        state.auth.user = payload
       })
     },
   },

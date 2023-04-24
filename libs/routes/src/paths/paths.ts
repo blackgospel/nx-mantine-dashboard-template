@@ -7,10 +7,10 @@ export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   general: {
     app: createPath(ROOTS_DASHBOARD, '/app'),
+    settings: createPath(ROOTS_DASHBOARD, '/settings'),
   },
   user: {
     root: createPath(ROOTS_DASHBOARD, '/user'),
-    account: createPath(ROOTS_DASHBOARD, '/user/account'),
   },
 }
 

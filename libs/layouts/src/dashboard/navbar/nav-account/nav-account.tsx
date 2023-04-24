@@ -10,7 +10,7 @@ export const NavAccount = () => {
   return (
     <Box
       component={Link}
-      href={PATH_DASHBOARD.user.account}
+      href={PATH_DASHBOARD.general.settings}
       sx={{ textDecoration: 'none' }}
     >
       <Box

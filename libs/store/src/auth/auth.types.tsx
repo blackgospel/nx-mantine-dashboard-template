@@ -1,13 +1,12 @@
+import { User } from 'next-auth'
+
 export interface IAuthSliceState {
-  token: string | null
+  user: User | null
 }
 
 export interface IAuthSliceActions {
-  /** Action to log user in to application */
-  login: () => void
-
   /** Action to register user in to application */
-  register: () => void
+  setUser: (payload: IAuthSliceState['user']) => void
 }
 
 export type IAuthSlice = IAuthSliceState & {

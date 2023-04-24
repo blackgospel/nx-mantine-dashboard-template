@@ -53,7 +53,11 @@ export const AccountPopover = () => {
           {Array(5)
             .fill(0)
             .map((_, index) => {
-              return <MenuItem primary>Menu Item {index}</MenuItem>
+              return (
+                <MenuItem key={index} primary>
+                  Menu Item {index}
+                </MenuItem>
+              )
             })}
         </Box>
       </Box>

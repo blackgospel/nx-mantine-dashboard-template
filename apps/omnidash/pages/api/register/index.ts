@@ -15,6 +15,8 @@ export default async function handler(
       email,
       name,
       image: faker.internet.avatar(),
+      role: 'user',
+      tagline: faker.word.adjective(),
       hashedPassword,
     },
   })

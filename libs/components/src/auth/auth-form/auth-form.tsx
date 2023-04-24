@@ -137,7 +137,12 @@ export const AuthForm = () => {
                   ? 'Already have an account? Login'
                   : "Don't have an account? Register"}
               </Anchor>
-              <Button variant="filled" type="submit" loading={loading}>
+              <Button
+                variant="gradient"
+                gradient={{ from: 'grape', to: 'pink' }}
+                type="submit"
+                loading={loading}
+              >
                 {toTitle(type)}
               </Button>
             </Group>

@@ -3,7 +3,7 @@ import { useDisclosure, useInputState } from '@mantine/hooks'
 import { useStore } from '@omnidash/store'
 import { Iconify, MenuItem, MenuPopover } from '@omnidash/ui'
 import { isEmpty } from 'ramda'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 export const SearchTabs = () => {
   const [value, setValue] = useInputState('')
@@ -12,10 +12,6 @@ export const SearchTabs = () => {
     tabs,
     actions: { navigateGlobalTab },
   } = useStore.use.globalTabs()
-
-  useEffect(() => {
-    console.log({ popoverOpened })
-  }, [popoverOpened])
 
   const handleClick = (id: string) => () => {
     close()
