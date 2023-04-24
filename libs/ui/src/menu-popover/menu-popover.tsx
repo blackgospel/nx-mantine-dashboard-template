@@ -2,7 +2,6 @@ import { Popover } from '@mantine/core'
 import { IMenuPopoverProps } from './menu-popover.types'
 
 export const MenuPopover = ({
-  opened,
   children,
   position = 'top-end',
   sx,

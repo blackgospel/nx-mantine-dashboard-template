@@ -1,14 +1,6 @@
-import {
-  ActionIcon,
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  Text,
-  Title,
-} from '@mantine/core'
+import { Box, Button, Divider, Text, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { MenuItem, MenuPopover } from '@omnidash/ui'
+import { CustomAvatar, MenuItem, MenuPopover } from '@omnidash/ui'
 import { toTitle } from '@omnidash/utils'
 import { signOut, useSession } from 'next-auth/react'
 
@@ -26,17 +18,11 @@ export const AccountPopover = () => {
       onOpen={open}
       onClose={close}
       trigger={
-        <ActionIcon
-          variant="default"
+        <CustomAvatar
+          src={session?.user?.image}
+          alt={session?.user?.name ?? 'N/A'}
           onClick={toggle}
-          sx={{ width: 32, height: 32 }}
-        >
-          <Avatar
-            src={session?.user?.image}
-            alt={session?.user?.name ?? 'N/A'}
-            radius="xl"
-          />
-        </ActionIcon>
+        />
       }
       width={200}
     >

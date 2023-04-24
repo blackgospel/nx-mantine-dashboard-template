@@ -8,6 +8,10 @@ export const PATH_DASHBOARD = {
   general: {
     app: createPath(ROOTS_DASHBOARD, '/app'),
   },
+  user: {
+    root: createPath(ROOTS_DASHBOARD, '/user'),
+    account: createPath(ROOTS_DASHBOARD, '/user/account'),
+  },
 }
 
 export const PATH_AUTH = {

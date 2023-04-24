@@ -24,7 +24,7 @@ export const NotificationPopover = () => {
           onClick={toggle}
           sx={{ width: 32, height: 32 }}
         >
-          <Iconify icon="eva:bell-fill" />
+          <Iconify icon="solar:bell-bing-bold" />
         </ActionIcon>
       }
       width={360}

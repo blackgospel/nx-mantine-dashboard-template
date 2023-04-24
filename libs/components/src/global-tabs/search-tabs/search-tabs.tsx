@@ -3,7 +3,7 @@ import { useDisclosure, useInputState } from '@mantine/hooks'
 import { useStore } from '@omnidash/store'
 import { Iconify, MenuItem, MenuPopover } from '@omnidash/ui'
 import { isEmpty } from 'ramda'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
 export const SearchTabs = () => {
   const [value, setValue] = useInputState('')
@@ -13,9 +13,13 @@ export const SearchTabs = () => {
     actions: { navigateGlobalTab },
   } = useStore.use.globalTabs()
 
+  useEffect(() => {
+    console.log({ popoverOpened })
+  }, [popoverOpened])
+
   const handleClick = (id: string) => () => {
+    close()
     navigateGlobalTab(id)
-    // close()
   }
 
   const filteredData = useMemo(() => {
@@ -32,8 +36,10 @@ export const SearchTabs = () => {
   return (
     <MenuPopover
       opened={popoverOpened}
-      onOpen={open}
-      onClose={close}
+      onChange={opened => {
+        console.log({ opened })
+        opened ? open() : close()
+      }}
       trigger={
         <Center
           sx={theme => {
@@ -48,6 +54,7 @@ export const SearchTabs = () => {
               }),
             }
           }}
+          onClick={open}
         >
           <Iconify icon="solar:calendar-search-bold" />
         </Center>
