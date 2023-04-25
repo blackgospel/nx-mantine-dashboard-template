@@ -7,6 +7,7 @@ export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   general: {
     app: createPath(ROOTS_DASHBOARD, '/app'),
+    matchFinder: createPath(ROOTS_DASHBOARD, '/match-finder'),
     settings: createPath(ROOTS_DASHBOARD, '/settings'),
   },
   user: {

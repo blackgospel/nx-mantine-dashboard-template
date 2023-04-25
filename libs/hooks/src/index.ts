@@ -1,4 +1,6 @@
 export * from './use-active-link'
 export * from './use-api'
 export * from './use-get-current-user'
+export * from './use-initialize-tabs'
 export * from './use-loading'
+export * from './use-responsive'

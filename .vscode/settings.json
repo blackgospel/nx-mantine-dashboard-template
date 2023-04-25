@@ -1,0 +1,8 @@
+{
+  "exportall.config.folderListener": [
+    "/libs/components/src",
+    "/libs/ui",
+    "/libs/ui/src",
+    "/libs/theme/src/overrides"
+  ]
+}

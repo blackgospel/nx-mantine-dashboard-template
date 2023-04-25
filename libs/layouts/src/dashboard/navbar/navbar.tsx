@@ -1,4 +1,5 @@
 import { Navbar, ScrollArea, Stack } from '@mantine/core'
+import { MOBILE_BREAKPOINT } from '@omnidash/config'
 import { useStore } from '@omnidash/store'
 import { Logo } from '@omnidash/ui'
 import { NavAccount } from './nav-account'
@@ -9,7 +10,12 @@ export const DashboardNavbar: React.FC<IDashboardNavbarProps> = () => {
   const { opened } = useStore.use.navbar()
 
   return (
-    <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 265 }}>
+    <Navbar
+      p="md"
+      hiddenBreakpoint={MOBILE_BREAKPOINT}
+      hidden={!opened}
+      width={{ [MOBILE_BREAKPOINT]: 265 }}
+    >
       <ScrollArea>
         <Stack spacing={32}>
           <Stack sx={{ paddingInline: 12 }}>

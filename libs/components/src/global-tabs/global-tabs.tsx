@@ -1,12 +1,11 @@
 import { Box, Tabs } from '@mantine/core'
 import { useStore } from '@omnidash/store'
 import { IGlobalTabsProps } from './global-tabs.types'
-import { NewTab } from './new-tab'
 import { SearchTabs } from './search-tabs'
 import { TabContent } from './tab-content'
 import { TabList } from './tab-list'
 
-export const GlobalTabs: React.FC<IGlobalTabsProps> = () => {
+export const GlobalTabs: React.FC<IGlobalTabsProps> = ({ children }) => {
   const {
     current,
     actions: { navigateGlobalTab },
@@ -17,6 +16,7 @@ export const GlobalTabs: React.FC<IGlobalTabsProps> = () => {
       value={current}
       keepMounted={false}
       onTabChange={(item: string) => navigateGlobalTab(item)}
+      sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}
       styles={{
         tabLabel: {
           display: 'flex',
@@ -50,14 +50,12 @@ export const GlobalTabs: React.FC<IGlobalTabsProps> = () => {
           },
         })}
       >
-        <NewTab />
-
         <TabList />
 
         <SearchTabs />
       </Box>
 
-      <TabContent />
+      <TabContent>{children}</TabContent>
     </Tabs>
   )
 }

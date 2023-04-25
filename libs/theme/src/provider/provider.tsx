@@ -4,6 +4,7 @@ import { Notifications } from '@mantine/notifications'
 import { NavigationProgress } from '@mantine/nprogress'
 import { SpotlightProvider } from '@mantine/spotlight'
 import { GlobalStyles } from '../global/global-styles'
+import { ScrollSizeProvider } from '../scroll-size'
 import { MotionLazyProvider } from './motion-lazy'
 import { useCreateTheme } from './provider.hooks'
 import { ThemeProviderProps } from './provider.types'
@@ -20,10 +21,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
           <SpotlightProvider actions={[]}>
             <ModalsProvider>
-              <NavigationProgress />
-              <Notifications />
-              <GlobalStyles />
-              {children}
+              <ScrollSizeProvider>
+                <NavigationProgress />
+                <Notifications />
+                <GlobalStyles />
+                {children}
+              </ScrollSizeProvider>
             </ModalsProvider>
           </SpotlightProvider>
         </MantineProvider>

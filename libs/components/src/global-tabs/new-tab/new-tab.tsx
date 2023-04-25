@@ -8,6 +8,8 @@ export const NewTab = () => {
         const colors = theme.fn.variant({ variant: 'default' })
         return {
           width: 42,
+          minWidth: 42,
+          maxWidth: 42,
           color: colors.color,
           cursor: 'pointer',
           borderRight: `1px solid ${colors.border}`,

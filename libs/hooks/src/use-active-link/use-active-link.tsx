@@ -17,8 +17,6 @@ export const useActiveLink = (
 
   const currentPath = path === '/' ? '/' : `${path}`
 
-  console.log({ pathname, currentPath, path })
-
   const normalActive =
     (!checkPath && pathname === currentPath) ||
     (!checkPath && asPath === currentPath)

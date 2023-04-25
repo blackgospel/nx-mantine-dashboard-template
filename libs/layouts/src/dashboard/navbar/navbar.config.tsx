@@ -10,9 +10,9 @@ export const NAV_CONFIG = [
         icon: 'solar:gamepad-bold',
       },
       {
-        title: 'settings',
-        path: PATH_DASHBOARD.general.settings,
-        icon: 'solar:settings-bold',
+        title: 'match finder',
+        path: PATH_DASHBOARD.general.matchFinder,
+        icon: 'solar:calendar-search-bold-duotone',
       },
     ],
   },

@@ -33,7 +33,6 @@ export const SearchTabs = () => {
     <MenuPopover
       opened={popoverOpened}
       onChange={opened => {
-        console.log({ opened })
         opened ? open() : close()
       }}
       trigger={

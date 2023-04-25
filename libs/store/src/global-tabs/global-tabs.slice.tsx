@@ -1,41 +1,37 @@
-import { faker } from '@faker-js/faker'
 import { upsertObjectArray } from '@omnidash/utils'
 import { mergeDeepRight, uniq } from 'ramda'
 import { IStateCreator } from '../store.types'
-import { DEFAULT_TAB } from './global-tabs.constants'
+import {
+  DEFAULT_TAB,
+  DEFAULT_TABS_LIST,
+  GLOBAL_TAB_TYPE,
+} from './global-tabs.constants'
 import { IGlobalTabItem, IGlobalTabsSlice } from './global-tabs.types'
-import { generateTab } from './global-tabs.utils'
+import { generateTab, getTabsByType } from './global-tabs.utils'
 
 export const createGlobalTabsSlice: IStateCreator<IGlobalTabsSlice> = (
   set,
   get
 ) => ({
-  tabs: [
-    {
-      id: DEFAULT_TAB.ID,
-      label: DEFAULT_TAB.LABEL,
-      state: {
-        resourceId: null,
-        pinned: true,
-      },
-    },
-    ...Array(20)
-      .fill(0)
-      .map(() => {
-        return {
-          id: faker.datatype.uuid(),
-          label: faker.name.fullName(),
-          state: {
-            resourceId: null,
-            pinned: false,
-          },
-        }
-      }),
-  ],
+  tabs: DEFAULT_TABS_LIST,
+
+  currentTabs: [],
 
   current: DEFAULT_TAB.ID,
 
+  globalTabType: GLOBAL_TAB_TYPE.ALL,
+
   actions: {
+    initializeCurrentTabs: () =>
+      set(state => {
+        state.globalTabs.currentTabs = uniq(
+          getTabsByType({
+            tabs: state.globalTabs.tabs,
+            type: state.globalTabs.globalTabType,
+          })
+        )
+      }),
+
     addGlobalTab: (payload: Partial<IGlobalTabItem>) =>
       set(state => {
         const item = payload ?? {}

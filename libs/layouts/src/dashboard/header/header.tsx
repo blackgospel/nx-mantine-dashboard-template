@@ -7,6 +7,7 @@ import {
   MediaQuery,
   useMantineTheme,
 } from '@mantine/core'
+import { MOBILE_BREAKPOINT } from '@omnidash/config'
 import { useStore } from '@omnidash/store'
 import { AccountPopover } from './account-popover'
 import { IDashboardHeaderProps } from './header.types'
@@ -23,7 +24,7 @@ export const DashboardHeader: React.FC<IDashboardHeaderProps> = () => {
   return (
     <Header height={{ base: 60 }} p="md">
       <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <MediaQuery largerThan={MOBILE_BREAKPOINT} styles={{ display: 'none' }}>
           <Burger
             opened={opened}
             onClick={toggleNavbar}

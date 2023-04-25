@@ -8,7 +8,6 @@ import { INavItemProps } from './nav-item.types'
 export const NavItem: React.FC<INavItemProps> = ({ data }) => {
   const { active } = useActiveLink(data.path)
 
-  console.log({ active })
   return (
     <MenuItem
       key={data.path}

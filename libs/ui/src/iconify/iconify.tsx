@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Icon } from '@iconify/react'
-import { Box } from '@mantine/core'
+import { Box, Sx } from '@mantine/core'
 import React from 'react'
 import { IIconifyProps } from './iconify.types'
 
@@ -12,7 +12,7 @@ export const Iconify = React.forwardRef<any, IIconifyProps>(
         ref={ref}
         component={Icon}
         icon={icon}
-        sx={{ width, height: width, ...sx }}
+        sx={[{ width, height: width }, sx as Sx]}
         {...props}
       />
     )

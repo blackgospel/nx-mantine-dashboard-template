@@ -1,6 +1,12 @@
-import { TabProps } from '@mantine/core'
+import { DefaultProps, TabProps } from '@mantine/core'
 
-export interface IGlobalTabItemProps extends TabProps {
+export interface IGlobalTabItemProps
+  extends Pick<
+      React.ComponentPropsWithoutRef<'button'>,
+      Exclude<keyof React.ComponentPropsWithoutRef<'button'>, keyof TabProps>
+    >,
+    TabProps,
+    Pick<DefaultProps<any>, 'sx'> {
   /** Tab index association */
   index?: number
 
