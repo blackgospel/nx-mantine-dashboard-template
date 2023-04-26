@@ -1,6 +1,9 @@
 import { Box, Tabs } from '@mantine/core'
 import { useStore } from '@omnidash/store'
+import { SCROLL_SIZE_KEYS, useScrollSizeUpsert } from '@omnidash/theme'
+import { BurgerTab } from './burger-tab'
 import { IGlobalTabsProps } from './global-tabs.types'
+import { HomeTab } from './home-tab'
 import { SearchTabs } from './search-tabs'
 import { TabContent } from './tab-content'
 import { TabList } from './tab-list'
@@ -10,6 +13,8 @@ export const GlobalTabs: React.FC<IGlobalTabsProps> = ({ children }) => {
     current,
     actions: { navigateGlobalTab },
   } = useStore.use.globalTabs()
+
+  const item = useScrollSizeUpsert(SCROLL_SIZE_KEYS.DASHBOARD.TAB.LIST_ROOT)
 
   return (
     <Tabs
@@ -28,6 +33,7 @@ export const GlobalTabs: React.FC<IGlobalTabsProps> = ({ children }) => {
       unstyled
     >
       <Box
+        ref={item.ref}
         sx={theme => ({
           position: 'relative',
           display: 'flex',
@@ -50,6 +56,10 @@ export const GlobalTabs: React.FC<IGlobalTabsProps> = ({ children }) => {
           },
         })}
       >
+        <BurgerTab />
+
+        <HomeTab />
+
         <TabList />
 
         <SearchTabs />

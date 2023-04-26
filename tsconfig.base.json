@@ -22,6 +22,7 @@
       "@omnidash/hooks": ["libs/hooks/src/index.ts"],
       "@omnidash/illustrations": ["libs/illustrations/src/index.ts"],
       "@omnidash/layouts": ["libs/layouts/src/index.ts"],
+      "@omnidash/mocks": ["libs/mocks/src/index.ts"],
       "@omnidash/providers": ["libs/providers/src/index.ts"],
       "@omnidash/routes": ["libs/routes/src/index.ts"],
       "@omnidash/schema": ["libs/schema/src/index.ts"],

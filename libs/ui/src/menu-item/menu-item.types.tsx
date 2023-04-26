@@ -8,4 +8,10 @@ export interface IMenuItemProps
 
   /** Primary colors */
   primary?: boolean
+
+  /** Left side icon */
+  icon?: React.ReactNode
+
+  /** Right side section */
+  rightSection?: React.ReactNode
 }

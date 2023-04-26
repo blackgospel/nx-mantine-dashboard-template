@@ -47,10 +47,8 @@ export const createGlobalTabsSlice: IStateCreator<IGlobalTabsSlice> = (
         )
         const previousIndex = targetIndex === 0 ? 1 : targetIndex - 1
 
-        state.globalTabs.current =
-          state.globalTabs.current === payload
-            ? state.globalTabs.tabs[previousIndex].id
-            : state.globalTabs.current
+        state.globalTabs.current = DEFAULT_TAB.ID
+
         state.globalTabs.tabs = uniq(
           state.globalTabs.tabs.filter(({ id }) => id !== payload)
         )

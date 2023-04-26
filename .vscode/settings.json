@@ -3,6 +3,7 @@
     "/libs/components/src",
     "/libs/ui",
     "/libs/ui/src",
-    "/libs/theme/src/overrides"
+    "/libs/theme/src/overrides",
+    "/libs/mocks/src/assets"
   ]
 }

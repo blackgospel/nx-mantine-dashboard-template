@@ -1,5 +1,3 @@
-import { faker } from '@faker-js/faker'
-
 export const DEFAULT_TAB = {
   ID: 'TABS_DEFAULT_ID',
   LABEL: 'Dashboard',
@@ -24,16 +22,4 @@ export const DEFAULT_TABS_LIST = [
       pinned: true,
     },
   },
-  ...Array(10)
-    .fill(0)
-    .map(() => {
-      return {
-        id: faker.datatype.uuid(),
-        label: faker.name.fullName(),
-        state: {
-          resourceId: null,
-          pinned: false,
-        },
-      }
-    }),
 ]

@@ -10,6 +10,7 @@ export const MenuPopover = ({
 }: IMenuPopoverProps) => {
   return (
     <Popover
+      withinPortal
       withArrow
       transitionProps={{ transition: 'pop-top-right' }}
       arrowSize={16}

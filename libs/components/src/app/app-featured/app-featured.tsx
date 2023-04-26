@@ -11,7 +11,7 @@ export const AppFeatured: React.FC<IAppFeaturedProps> = ({
   ...props
 }) => {
   const item = useScrollSizeGetItem(
-    SCROLL_SIZE_KEYS.DASHBOARD.APP.APP_FEATURED_GRID_ITEM
+    SCROLL_SIZE_KEYS.DASHBOARD.PAGES.APP.APP_FEATURED_GRID_ITEM
   )
   const width = item?.width ?? 'auto'
 

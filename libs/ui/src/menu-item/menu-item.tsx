@@ -3,7 +3,7 @@ import React from 'react'
 import { IMenuItemProps } from './menu-item.types'
 
 export const _MenuItem = React.forwardRef<HTMLDivElement, IMenuItemProps>(
-  ({ children, sx, color, primary, ...props }, ref) => {
+  ({ children, sx, color, primary, icon, rightSection, ...props }, ref) => {
     return (
       <Box
         ref={ref}
@@ -56,7 +56,20 @@ export const _MenuItem = React.forwardRef<HTMLDivElement, IMenuItemProps>(
         ]}
         {...props}
       >
+        {icon && (
+          <Box
+            sx={theme => ({
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginRight: theme.spacing.xs,
+            })}
+          >
+            {icon}
+          </Box>
+        )}
         <Box sx={{ flex: 1 }}>{children}</Box>
+        {rightSection && <>{rightSection}</>}
       </Box>
     )
   }

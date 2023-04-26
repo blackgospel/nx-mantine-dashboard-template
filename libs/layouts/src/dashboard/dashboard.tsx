@@ -30,6 +30,12 @@ export const DashboardLayout: React.FC<IDashboardLayoutProps> = ({
             paddingLeft:
               'calc(var(--mantine-navbar-width, 0px) + 0px) !important',
             paddingRight: 'calc(var(--mantine-aside-width, 0px) + 0px)',
+
+            '& > *': {
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
+            },
           },
         }}
         navbar={<DashboardNavbar />}

@@ -5,13 +5,10 @@ import { ITabContentProps } from './tab-content.types'
 
 export const TabContent: React.FC<ITabContentProps> = ({ children }) => {
   const { tabs } = useStore.use.globalTabs()
-  const item = useScrollSizeUpsert(SCROLL_SIZE_KEYS.DASHBOARD.TAB_CONTENT_ROOT)
+  const item = useScrollSizeUpsert(SCROLL_SIZE_KEYS.DASHBOARD.TAB.CONTENT_ROOT)
 
   return (
-    <Box
-      ref={item.ref}
-      sx={{ flex: 1, overflow: 'hidden', paddingBlock: 32, paddingInline: 16 }}
-    >
+    <Box ref={item.ref} sx={{ flex: 1, overflow: 'hidden' }}>
       <ScrollArea
         sx={{
           height: item.height,
