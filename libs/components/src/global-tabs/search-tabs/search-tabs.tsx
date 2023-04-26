@@ -31,6 +31,7 @@ export const SearchTabs = () => {
 
   return (
     <MenuPopover
+      withArrow
       opened={popoverOpened}
       onChange={opened => {
         opened ? open() : close()

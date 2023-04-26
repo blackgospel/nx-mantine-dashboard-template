@@ -4,15 +4,8 @@ import { DEFAULT_TAB, useStore } from '@omnidash/store'
 import { GlobalTab } from '../global-tab'
 
 export const TabList = () => {
-  const {
-    tabs,
-    actions: { deleteGlobalTab },
-  } = useStore.use.globalTabs()
+  const { tabs } = useStore.use.globalTabs()
   const theme = useMantineTheme()
-
-  const handleTabDelete = (id: string) => () => {
-    deleteGlobalTab(id)
-  }
 
   return (
     <Box
@@ -48,7 +41,6 @@ export const TabList = () => {
             value={id}
             index={index}
             label={label}
-            onClose={handleTabDelete}
             pinned={pinned}
           >
             <Text size="sm" lineClamp={1} align="left">

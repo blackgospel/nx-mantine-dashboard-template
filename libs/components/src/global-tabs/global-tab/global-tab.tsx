@@ -1,5 +1,6 @@
 import { ActionIcon, Sx, Tabs } from '@mantine/core'
 import { MOBILE_BREAKPOINT } from '@omnidash/config'
+import { useStore } from '@omnidash/store'
 import { Iconify } from '@omnidash/ui'
 import { IGlobalTabItemProps } from './global-tab.types'
 
@@ -13,6 +14,17 @@ export const GlobalTab: React.FC<IGlobalTabItemProps> = ({
   sx,
   ...props
 }) => {
+  const {
+    actions: { deleteGlobalTab },
+  } = useStore.use.globalTabs()
+
+  const handleTabDelete =
+    (id?: string) => (event: React.MouseEvent<HTMLElement>) => {
+      event.stopPropagation()
+      if (!id) return
+      deleteGlobalTab(id)
+    }
+
   const disabled = pinned
 
   return (
@@ -69,7 +81,7 @@ export const GlobalTab: React.FC<IGlobalTabItemProps> = ({
           component="span"
           variant="subtle"
           size="xs"
-          onClick={onClose(id)}
+          onClick={handleTabDelete(id)}
           data-id={id}
           sx={theme => ({
             zIndex: 5,

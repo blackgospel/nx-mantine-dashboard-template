@@ -9,15 +9,7 @@ export const MenuPopover = ({
   ...props
 }: IMenuPopoverProps) => {
   return (
-    <Popover
-      withinPortal
-      withArrow
-      transitionProps={{ transition: 'pop-top-right' }}
-      arrowSize={16}
-      arrowRadius={4}
-      arrowPosition="center"
-      {...props}
-    >
+    <Popover transitionProps={{ transition: 'pop-top-right' }} {...props}>
       <Popover.Target>{trigger}</Popover.Target>
 
       <Popover.Dropdown sx={{ padding: 0 }}>{children}</Popover.Dropdown>
