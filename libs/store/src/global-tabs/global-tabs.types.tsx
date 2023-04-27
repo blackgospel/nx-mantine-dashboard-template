@@ -1,8 +1,14 @@
 import { GLOBAL_TAB_TYPE } from './global-tabs.constants'
 
+export interface ITabResource {
+  id: string
+
+  type: 'match' | 'team' | 'player'
+}
+
 export interface IGlobalTabItemState {
-  /** Resource ID which tab is associated with */
-  resourceId: string | null
+  /** Resource which tab is associated with */
+  resource: ITabResource | null
 
   /** Pinned tabs will have their close button disabled */
   pinned?: boolean
@@ -36,7 +42,7 @@ export interface IGlobalTabsSliceState {
 }
 
 export interface IGlobalTabsSliceActions {
-  addGlobalTab: (payload: Partial<IGlobalTabItem>) => void
+  addGlobalTab: (payload: Partial<IGlobalTabItem>, open?: boolean) => void
 
   navigateGlobalTab: (payload: string) => void
 

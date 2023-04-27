@@ -1,6 +1,7 @@
 import { upsertObjectArray } from '@omnidash/utils'
 import { mergeDeepRight, uniq } from 'ramda'
 import { IStateCreator } from '../store.types'
+import { createAppSelector } from '../store.utils'
 import {
   DEFAULT_TAB,
   DEFAULT_TABS_LIST,
@@ -32,12 +33,12 @@ export const createGlobalTabsSlice: IStateCreator<IGlobalTabsSlice> = (
         )
       }),
 
-    addGlobalTab: (payload: Partial<IGlobalTabItem>) =>
+    addGlobalTab: (payload: Partial<IGlobalTabItem>, open = true) =>
       set(state => {
         const item = payload ?? {}
         const tabItem = mergeDeepRight(generateTab(), item)
         state.globalTabs.tabs = uniq([...state.globalTabs.tabs, tabItem])
-        state.globalTabs.current = tabItem.id
+        state.globalTabs.current = open ? tabItem.id : state.globalTabs.current
       }),
 
     deleteGlobalTab: (payload: string) =>
@@ -77,3 +78,7 @@ export const createGlobalTabsSlice: IStateCreator<IGlobalTabsSlice> = (
       }),
   },
 })
+
+export const selectCurrentTab = createAppSelector(state =>
+  state.globalTabs.tabs?.find(item => item.id === state.globalTabs.current)
+)

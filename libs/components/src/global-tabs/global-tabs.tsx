@@ -19,7 +19,6 @@ export const GlobalTabs: React.FC<IGlobalTabsProps> = ({ children }) => {
   return (
     <Tabs
       value={current}
-      keepMounted={false}
       onTabChange={(item: string) => navigateGlobalTab(item)}
       sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}
       styles={{

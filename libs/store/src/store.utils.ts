@@ -1,5 +1,5 @@
 import { StoreApi, UseBoundStore } from 'zustand'
-import { IStateCreator, IStoreSelectors } from './store.types'
+import { AppSelector, IStateCreator, IStoreSelectors } from './store.types'
 
 export const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
   _store: S
@@ -19,3 +19,7 @@ export const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 export const createSet: IStateCreator<T> = set => (callback: () => void) => {
   return () => set(callback)
 }
+
+export const createAppSelector = <R>(
+  selector: AppSelector<R>
+): AppSelector<R> => selector

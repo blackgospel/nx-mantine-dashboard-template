@@ -18,3 +18,5 @@ export type IStateCreator<T> = StateCreator<IStore, IStoreMiddlewares, [], T>
 export type IStoreSelectors<S> = S extends { getState: () => infer T }
   ? S & { use: { [K in keyof T]: () => T[K] } }
   : never
+
+export type AppSelector<Return> = (state: IStore) => Return

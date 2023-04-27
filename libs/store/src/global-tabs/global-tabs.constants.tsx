@@ -18,7 +18,7 @@ export const DEFAULT_TABS_LIST = [
     id: DEFAULT_TAB.ID,
     label: DEFAULT_TAB.LABEL,
     state: {
-      resourceId: null,
+      resource: null,
       pinned: true,
     },
   },

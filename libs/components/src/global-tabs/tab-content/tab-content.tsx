@@ -1,4 +1,5 @@
 import { Box, ScrollArea, Tabs } from '@mantine/core'
+import { LayoutViewMatch } from '@omnidash/layouts'
 import { useStore } from '@omnidash/store'
 import { SCROLL_SIZE_KEYS, useScrollSizeUpsert } from '@omnidash/theme'
 import { ITabContentProps } from './tab-content.types'
@@ -14,7 +15,15 @@ export const TabContent: React.FC<ITabContentProps> = ({ children }) => {
           height: item.height,
         }}
       >
-        {tabs.map(({ id }) => {
+        {tabs.map(({ id, state }) => {
+          if (state.resource?.type === 'match') {
+            return (
+              <Tabs.Panel key={id} value={id}>
+                <LayoutViewMatch />
+              </Tabs.Panel>
+            )
+          }
+
           return (
             <Tabs.Panel key={id} value={id}>
               {children}

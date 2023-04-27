@@ -1,4 +1,4 @@
-import { Box, Text, useMantineTheme } from '@mantine/core'
+import { Box, useMantineTheme } from '@mantine/core'
 import { MOBILE_BREAKPOINT } from '@omnidash/config'
 import { DEFAULT_TAB, useStore } from '@omnidash/store'
 import { GlobalTab } from '../global-tab'
@@ -42,11 +42,7 @@ export const TabList = () => {
             index={index}
             label={label}
             pinned={pinned}
-          >
-            <Text size="sm" lineClamp={1} align="left">
-              {label}
-            </Text>
-          </GlobalTab>
+          />
         )
       })}
     </Box>
