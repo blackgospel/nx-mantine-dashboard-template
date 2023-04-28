@@ -12,4 +12,9 @@ export interface IPageProps
 
   /** Page meta */
   meta?: React.ReactNode
+
+  /** Flag to present dashboard page */
+  dashboard?: {
+    breadcrumb?: { title?: string; href?: string }[]
+  }
 }

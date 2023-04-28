@@ -6,7 +6,7 @@ export interface ITeam {
   id: string
   tournamentId: string
   name: string
-  code: string
+  code?: string | null
   country: string
 }
 

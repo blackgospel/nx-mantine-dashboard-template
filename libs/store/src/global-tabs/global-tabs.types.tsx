@@ -46,6 +46,8 @@ export interface IGlobalTabsSliceActions {
 
   navigateGlobalTab: (payload: string) => void
 
+  navigateToDashboard: () => void
+
   deleteGlobalTab: (payload: string) => void
 
   updateCurrentTab: (payload: Partial<IGlobalTabItem>) => void

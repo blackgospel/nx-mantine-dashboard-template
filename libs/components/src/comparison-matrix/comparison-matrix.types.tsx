@@ -8,6 +8,8 @@ export interface IComparisonMatrixProps
 }
 
 export interface IComparisonMatrixContext {
+  match: IMatchData
+
   numOfGames: number
 
   handleGetOppositionTeam: (

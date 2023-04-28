@@ -1,8 +1,13 @@
-import { Center, Text, Title } from '@mantine/core'
+import { Box, Text, Title } from '@mantine/core'
 import { toTitle } from '@omnidash/utils'
+import { Fragment } from 'react'
+import { MatrixCell } from '../cell'
 import { STATISTICS_ATTRIBUTES } from '../comparison-matrix.constants'
 import { useComparisonMatrixContext } from '../comparison-matrix.context'
-import { TEMP_DATA } from '../temp-data'
+import {
+  generateExtraStats,
+  getRecentTeamData,
+} from '../comparison-matrix.utils'
 import { IMatrixBodyProps } from './body.types'
 
 export const IMatrixBody: React.FC<IMatrixBodyProps> = () => {
@@ -10,114 +15,109 @@ export const IMatrixBody: React.FC<IMatrixBodyProps> = () => {
 
   return (
     <>
-      {STATISTICS_ATTRIBUTES.map((attribute, index) => {
-        return (
-          <>
-            {[...Array(ctx.numOfGames)].map((_, index) => {
-              const [homeTeamMatch, [homeTeamOppositionSide]] =
-                ctx.handleGetOppositionTeam(
-                  TEMP_DATA.homeTeam.id,
-                  TEMP_DATA.recentGames[0].slice(-ctx.numOfGames),
-                  index
-                )
+      {STATISTICS_ATTRIBUTES.map(attribute => (
+        <Fragment key={attribute}>
+          {[...Array(ctx.numOfGames)].map((_, index) => {
+            const {
+              opposition: { side, team },
+              currentRecentGame,
+            } = getRecentTeamData(ctx, 'home', index)
 
+            const formattedMatchStats = generateExtraStats(
+              currentRecentGame.matchStatistics
+            )
+
+            const [homeStat, awayStat] =
+              formattedMatchStats[attribute as keyof typeof formattedMatchStats]
+
+            const isWon =
+              side === 'home' ? homeStat > awayStat : homeStat < awayStat
+            const isSame = homeStat === awayStat
+
+            if (attribute === 'goals') {
               return (
-                <Center
-                  sx={theme => ({
-                    position: 'relative',
-                    border: `1px solid ${
-                      theme.colorScheme === 'dark'
-                        ? theme.colors.dark[5]
-                        : theme.colors.gray[2]
-                    }`,
-                    borderWidth: '0 1px 1px 1px',
-                  })}
+                <MatrixCell
+                  key={`home${
+                    index + currentRecentGame.startTimestamp + team.id
+                  }`}
+                  type="home"
                 >
-                  {
-                    homeTeamMatch?.matchStatistics[
-                      attribute as keyof typeof homeTeamMatch.matchStatistics
-                    ][homeTeamOppositionSide === 'home' ? 0 : 1]
-                  }
-
-                  <Text
-                    sx={theme => ({
-                      position: 'absolute',
-                      right: 2,
-                      bottom: 2,
-                      lineHeight: '1',
-                      fontSize: 10,
-                    })}
+                  <Title
+                    order={5}
+                    color={isWon ? 'green' : isSame ? 'yellow' : 'red'}
                   >
-                    {
-                      homeTeamMatch?.matchStatistics[
-                        attribute as keyof typeof homeTeamMatch.matchStatistics
-                      ][homeTeamOppositionSide === 'home' ? 1 : 0]
-                    }
-                  </Text>
-                </Center>
+                    <Box component="span">{homeStat}</Box> -{' '}
+                    <Box component="span">{awayStat}</Box>
+                  </Title>
+                </MatrixCell>
               )
-            })}
+            }
 
-            <Center
-              sx={theme => ({
-                border: `1px solid ${
-                  theme.colorScheme === 'dark'
-                    ? theme.colors.dark[5]
-                    : theme.colors.gray[2]
-                }`,
-                borderWidth: '0 0 1px 0',
-              })}
-            >
-              <Title order={6}>{toTitle(attribute)}</Title>
-            </Center>
+            return (
+              <MatrixCell
+                key={`home${
+                  index + currentRecentGame.startTimestamp + team.id
+                }`}
+                type="home"
+              >
+                <Text>{side === 'home' ? homeStat : awayStat}</Text>
+              </MatrixCell>
+            )
+          })}
 
-            {[...Array(ctx.numOfGames)].map((_, index) => {
-              const [awayTeamMatch, [awayTeamOppositionSide]] =
-                ctx.handleGetOppositionTeam(
-                  TEMP_DATA.awayTeam.id,
-                  TEMP_DATA.recentGames[1],
-                  index
-                )
+          <MatrixCell type="center">
+            <Title order={6}>{toTitle(attribute)}</Title>
+          </MatrixCell>
 
+          {[...Array(ctx.numOfGames)].map((_, index) => {
+            const {
+              opposition: { side, team },
+              currentRecentGame,
+            } = getRecentTeamData(ctx, 'away', index)
+
+            const formattedMatchStats = generateExtraStats(
+              currentRecentGame.matchStatistics
+            )
+
+            const [homeStat, awayStat] =
+              formattedMatchStats[attribute as keyof typeof formattedMatchStats]
+
+            const isWon =
+              side === 'home' ? homeStat > awayStat : homeStat < awayStat
+            const isSame = homeStat === awayStat
+
+            if (attribute === 'goals') {
               return (
-                <Center
-                  sx={theme => ({
-                    position: 'relative',
-                    border: `1px solid ${
-                      theme.colorScheme === 'dark'
-                        ? theme.colors.dark[5]
-                        : theme.colors.gray[2]
-                    }`,
-                    borderWidth: '0 1px 1px 1px',
-                  })}
+                <MatrixCell
+                  key={`away${
+                    index + currentRecentGame.startTimestamp + team.id
+                  }`}
+                  type="home"
                 >
-                  {
-                    awayTeamMatch?.matchStatistics[
-                      attribute as keyof typeof awayTeamMatch.matchStatistics
-                    ][awayTeamOppositionSide === 'home' ? 0 : 1]
-                  }
-
-                  <Text
-                    sx={theme => ({
-                      position: 'absolute',
-                      right: 2,
-                      bottom: 2,
-                      lineHeight: '1',
-                      fontSize: 10,
-                    })}
+                  <Title
+                    order={5}
+                    color={isWon ? 'green' : isSame ? 'yellow' : 'red'}
                   >
-                    {
-                      awayTeamMatch?.matchStatistics[
-                        attribute as keyof typeof awayTeamMatch.matchStatistics
-                      ][awayTeamOppositionSide === 'home' ? 1 : 0]
-                    }
-                  </Text>
-                </Center>
+                    <Box component="span">{homeStat}</Box> -{' '}
+                    <Box component="span">{awayStat}</Box>
+                  </Title>
+                </MatrixCell>
               )
-            })}
-          </>
-        )
-      })}
+            }
+
+            return (
+              <MatrixCell
+                key={`away${
+                  index + currentRecentGame.startTimestamp + team.id
+                }`}
+                type="away"
+              >
+                <Text>{side === 'home' ? homeStat : awayStat}</Text>
+              </MatrixCell>
+            )
+          })}
+        </Fragment>
+      ))}
     </>
   )
 }

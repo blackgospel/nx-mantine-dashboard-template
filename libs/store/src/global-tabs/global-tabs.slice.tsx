@@ -64,6 +64,11 @@ export const createGlobalTabsSlice: IStateCreator<IGlobalTabsSlice> = (
         state.globalTabs.current = payload
       }),
 
+    navigateToDashboard: () =>
+      set(state => {
+        state.globalTabs.current = DEFAULT_TAB.ID
+      }),
+
     updateCurrentTab: (payload: Partial<IGlobalTabItem>) =>
       set(state => {
         const targetTab = state.globalTabs.tabs.find(({ id }) => id === payload)

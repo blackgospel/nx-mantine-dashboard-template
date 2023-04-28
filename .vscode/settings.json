@@ -6,6 +6,7 @@
     "/libs/mocks/src/assets",
     "/libs/mocks/src/arrays",
     "/libs/mocks/src",
-    "/libs/components/src/app"
+    "/libs/components/src/app",
+    "/libs/hooks/src"
   ]
 }
