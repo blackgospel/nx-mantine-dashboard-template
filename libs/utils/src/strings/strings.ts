@@ -44,3 +44,28 @@ export const toSentence = (str: string): string => {
   const interim = toKebab(str).replace(/-/g, ' ')
   return interim.charAt(0).toUpperCase() + interim.slice(1)
 }
+
+/**
+ * Returns a sentence-cased string version of the input string.
+ *
+ * @param str - The input string to convert to sentence case.
+ * @returns The sentence-cased version of the input string.
+ */
+export const toAbbreviation = (str?: string, index = 3) => {
+  if (!str) return
+
+  const interim = toCamel(str).replace(/-/g, ' ')
+
+  let abbreviation = ''
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === str[i].toUpperCase()) {
+      abbreviation += str[i]
+      if (abbreviation.length === index) {
+        break
+      }
+    }
+  }
+
+  return abbreviation
+}
