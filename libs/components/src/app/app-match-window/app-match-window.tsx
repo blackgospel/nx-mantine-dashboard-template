@@ -72,7 +72,12 @@ export const AppMatchWindow: React.FC<IAppMatchWindowProps> = ({ data }) => {
         <ScrollArea sx={{ height: matchMenuListItem.height }}>
           {Object.keys(data).map(item => {
             return (
-              <MatchCollapse data={data} name={item} onClick={handleClick} />
+              <MatchCollapse
+                key={item}
+                data={data}
+                name={item}
+                onClick={handleClick}
+              />
             )
           })}
         </ScrollArea>

@@ -1,7 +1,7 @@
 import { Box, ScrollArea, Tabs } from '@mantine/core'
-import { LayoutViewMatch } from '@omnidash/layouts'
 import { useStore } from '@omnidash/store'
 import { SCROLL_SIZE_KEYS, useScrollSizeUpsert } from '@omnidash/theme'
+import { LayoutViewMatch } from '../../views'
 import { ITabContentProps } from './tab-content.types'
 
 export const TabContent: React.FC<ITabContentProps> = ({ children }) => {
