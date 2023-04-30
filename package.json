@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nx serve omnidash",
-    "build": "nx build omnidash"
+    "dev:main": "nx serve omnidash",
+    "dev:playground": "nx serve omnidash-staging",
+    "dev": "yarn dev:playground",
+    "build:main": "nx build omnidash",
+    "build:playground": "nx build omnidash-staging",
+    "build": "yarn build:playground"
   },
   "private": true,
   "dependencies": {
