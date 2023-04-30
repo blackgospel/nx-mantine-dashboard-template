@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nx serve omnidash"
+    "dev": "nx serve omnidash",
+    "build": "nx build omnidash"
   },
   "private": true,
   "dependencies": {
