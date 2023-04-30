@@ -1,6 +1,7 @@
 import { Box, Title } from '@mantine/core'
 import { MatrixCell } from '../../cell'
 import { useMatchMatrixContext } from '../../match-matrix.context'
+import { useFilterFormContext } from '../../match-matrix.form'
 import { IGoalsCellProps } from './goals-cell.types'
 
 export const MatrixBodyGoalsCell: React.FC<IGoalsCellProps> = ({
@@ -8,8 +9,11 @@ export const MatrixBodyGoalsCell: React.FC<IGoalsCellProps> = ({
   teamData,
   ...props
 }) => {
-  const { lines, supporterToggle } = useMatchMatrixContext()
+  const { lines } = useMatchMatrixContext()
+  const form = useFilterFormContext()
   const { currentRecentGame, stats } = teamData
+
+  const supporterToggle = form.values.supporterToggle
 
   const highlightCondition =
     lines[attribute].state === 'over'
