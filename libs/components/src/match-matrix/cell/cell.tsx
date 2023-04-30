@@ -2,6 +2,7 @@ import { Box, CSSObject, Center, MantineTheme, Sx } from '@mantine/core'
 import { IMatrixCellProps } from './cell.types'
 
 const commonStyles = (theme: MantineTheme): CSSObject => ({
+  position: 'relative',
   border: `0.5px solid ${
     theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
   }`,

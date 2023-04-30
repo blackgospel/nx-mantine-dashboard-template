@@ -3,8 +3,6 @@ import { IMenuPopoverProps } from './menu-popover.types'
 
 export const MenuPopover = ({
   children,
-  position = 'top-end',
-  sx,
   trigger,
   ...props
 }: IMenuPopoverProps) => {

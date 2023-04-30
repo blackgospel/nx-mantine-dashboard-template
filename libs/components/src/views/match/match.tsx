@@ -1,11 +1,11 @@
 import { Card, Stack } from '@mantine/core'
 import { selectCurrentTab, selectMatchByID, useStore } from '@omnidash/store'
 import { Page } from '@omnidash/ui'
-import { ComparisonMatrix } from '../../comparison-matrix'
+import { MatchMatrix } from '../../match-matrix/match-matrix'
 
 export const LayoutViewMatch = () => {
   const currentTab = useStore(selectCurrentTab)
-  const match = useStore(selectMatchByID(currentTab?.state.resource?.id))
+  const match = useStore(selectMatchByID(currentTab?.state.resource?.id ?? ''))
 
   if (!match) {
     return null
@@ -23,7 +23,7 @@ export const LayoutViewMatch = () => {
       <Stack sx={{ display: 'inline-flex' }}>
         <Card withBorder>
           <Card.Section>
-            <ComparisonMatrix />
+            <MatchMatrix />
           </Card.Section>
         </Card>
       </Stack>

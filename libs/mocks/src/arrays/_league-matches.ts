@@ -20,6 +20,7 @@ export type IStats = Array<number>
 
 export interface IMatchStats extends IBaseMatchData {
   matchStatistics: {
+    goals: IStats
     possession: IStats
     totalShots: IStats
     totalShotsOnTarget: IStats
@@ -42,6 +43,8 @@ export interface IBaseMatchData {
 export interface IMatchData extends IBaseMatchData {
   recentGames: Array<Array<IMatchStats>>
 }
+
+export type IMatchDataArray = Array<IMatchData>
 
 export interface TreeNodeObject {
   [name: string]: TreeNode

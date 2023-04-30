@@ -9,6 +9,10 @@ export const ThemedPopover: MantineThemeComponents = {
       arrowRadius: 4,
       arrowPosition: 'center',
     },
-    styles: {},
+    styles: {
+      arrow: {
+        zIndex: -1,
+      },
+    },
   },
 }

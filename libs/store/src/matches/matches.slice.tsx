@@ -1,23 +1,24 @@
-import { IMatchData, _MOCKS_MATCHES, _leagueMatches } from '@omnidash/mocks'
+import { IMatchData, _leagueMatches } from '@omnidash/mocks'
 import { IStateCreator } from '../store.types'
 import { createAppSelector } from '../store.utils'
 import { IMatchesSlice } from './matches.types'
+import { formatMatches } from './matches.utils'
 
 export const createMatchesSlice: IStateCreator<IMatchesSlice> = (set, get) => ({
-  matches: null,
+  matches: [],
 
-  todayMatches: null,
+  todayMatches: {},
 
   actions: {
     setMatches: () =>
       set(state => {
-        state.matches.matches = _MOCKS_MATCHES
+        state.matches.matches = formatMatches()
         state.matches.todayMatches = _leagueMatches
       }),
   },
 })
 
-export const selectMatchByID = (id?: string) =>
+export const selectMatchByID = (id: string) =>
   createAppSelector<IMatchData | undefined>(state =>
-    id ? state.matches.matches?.find(item => item.id === id) : undefined
+    state.matches.matches.find(item => item.id === id)
   )

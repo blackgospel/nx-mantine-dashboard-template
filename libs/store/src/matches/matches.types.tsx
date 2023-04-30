@@ -1,10 +1,10 @@
-import { TreeNodeObject, _MOCKS_MATCHES } from '@omnidash/mocks'
+import { IMatchDataArray, TreeNodeObject } from '@omnidash/mocks'
 
 export interface IMatchesSliceState {
   /** Flag indicating whether menu is opened or not */
-  matches: typeof _MOCKS_MATCHES | null
+  matches: IMatchDataArray
 
-  todayMatches: TreeNodeObject | null
+  todayMatches: TreeNodeObject
 }
 
 export interface IMatchesSliceActions {
