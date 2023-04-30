@@ -1,5 +1,5 @@
 import { IMatchData, IMatchStats, ITeam } from '@omnidash/mocks'
-import { ILineAttributes, IMatchMatrixContext } from './match-matrix.types'
+import { ILineAttributes } from './match-matrix.types'
 
 export const generateMarks = (max: number) => {
   return {
@@ -38,9 +38,9 @@ export const generateSliderProps = (item: ILineAttributes) => {
   }
 }
 
-interface IGetRecentTeamDataProps
-  extends Pick<IMatchMatrixContext, 'gamesCount'> {
+interface IGetRecentTeamDataProps {
   match?: IMatchData
+  gamesCount: number
   side: 'home' | 'away'
   index: number
 }

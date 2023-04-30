@@ -7,4 +7,7 @@ export interface IMenuCollapseProps extends Omit<CollapseProps, 'in'> {
     toggle?: () => void
     opened: boolean
   }) => React.ReactNode
+
+  /** Initial toggle state */
+  initialState?: boolean
 }

@@ -7,8 +7,9 @@ export const MenuCollapse: React.FC<IMenuCollapseProps> = ({
   children,
   sx,
   trigger,
+  initialState = true,
 }) => {
-  const [opened, { toggle }] = useDisclosure(true)
+  const [opened, { toggle }] = useDisclosure(initialState)
 
   return (
     <Box sx={[theme => ({}), sx as Sx]}>

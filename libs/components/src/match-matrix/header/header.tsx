@@ -1,14 +1,19 @@
 import { Title } from '@mantine/core'
 import { MatrixCell } from '../cell'
 import { useMatchMatrixContext } from '../match-matrix.context'
+import { useFilterFormContext } from '../match-matrix.form'
 import { IMatrixHeaderProps } from './header.types'
 
 export const MatrixHeader: React.FC<IMatrixHeaderProps> = () => {
-  const { match, gamesCount } = useMatchMatrixContext()
+  const { match } = useMatchMatrixContext()
+  const form = useFilterFormContext()
 
   return (
     <>
-      <MatrixCell type="home" sx={{ gridColumn: `1 / span ${gamesCount}` }}>
+      <MatrixCell
+        type="home"
+        sx={{ gridColumn: `1 / span ${form.values.gamesCount}` }}
+      >
         <Title order={4}>{match?.homeTeam.name}</Title>
       </MatrixCell>
 
@@ -16,7 +21,11 @@ export const MatrixHeader: React.FC<IMatrixHeaderProps> = () => {
 
       <MatrixCell
         type="away"
-        sx={{ gridColumn: `${gamesCount + 2} / span ${gamesCount}` }}
+        sx={{
+          gridColumn: `${form.values.gamesCount + 2} / span ${
+            form.values.gamesCount
+          }`,
+        }}
       >
         <Title order={4}>{match?.awayTeam.name}</Title>
       </MatrixCell>

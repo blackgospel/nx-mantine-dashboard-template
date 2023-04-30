@@ -10,7 +10,13 @@ import { useCreateTheme } from './provider.hooks'
 import { ThemeProviderProps } from './provider.types'
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const { colorScheme, theme, toggleColorScheme } = useCreateTheme()
+  const {
+    colorScheme,
+    theme,
+    toggleColorScheme,
+    spotlightActions,
+    setSpotlightActions,
+  } = useCreateTheme()
 
   return (
     <MotionLazyProvider>
@@ -19,7 +25,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         toggleColorScheme={toggleColorScheme}
       >
         <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
-          <SpotlightProvider actions={[]}>
+          <SpotlightProvider
+            actions={spotlightActions}
+            onActionsChange={setSpotlightActions}
+          >
             <ModalsProvider>
               <ScrollSizeProvider>
                 <NavigationProgress />

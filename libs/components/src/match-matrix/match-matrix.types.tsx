@@ -17,7 +17,8 @@ export interface IMatchMatrixProps
   children?: React.ReactNode
 }
 
-export interface IMatchMatrixContext extends ReturnType<typeof useMatchMatrix> {
+export interface IMatchMatrixContext
+  extends Omit<ReturnType<typeof useMatchMatrix>, 'filtersForm'> {
   /** React children */
   children?: React.ReactNode
 }

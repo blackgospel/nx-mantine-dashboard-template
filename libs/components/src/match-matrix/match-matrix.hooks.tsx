@@ -1,3 +1,4 @@
+import { useForm } from '@mantine/form'
 import { selectCurrentTab, selectMatchByID, useStore } from '@omnidash/store'
 import { cleanObject } from '@omnidash/utils'
 import { useCallback, useState } from 'react'
@@ -6,8 +7,6 @@ import { MATRIX_ATTRIBUTES } from './matrix-matrix.constants'
 import { getRecentTeamData } from './matrix-matrix.utils'
 
 export const useMatchMatrix = () => {
-  const [supporterToggle, setSupporterToggle] = useState(true)
-  const [gamesCount, setGamesCount] = useState(10)
   const currentTab = useStore(selectCurrentTab)
   const match = useStore(selectMatchByID(currentTab?.state.resource?.id ?? ''))
   const [lines, setLines] = useState<ILineState>(
@@ -15,10 +14,15 @@ export const useMatchMatrix = () => {
       return { ...res, [item]: { value: 0, state: 'over' } }
     }, {})
   )
-
-  const handleSupporterToggle = () => setSupporterToggle(state => !state)
-
-  const handleGamesCount = (value: number) => setGamesCount(value)
+  const filtersForm = useForm({
+    initialValues: {
+      supporterToggle: true,
+      totalToggle: false,
+      gamesCount: 10,
+      venue: 'all' as 'all' | 'home' | 'away',
+      attributes: Object.values(MATRIX_ATTRIBUTES).map(attribute => attribute),
+    },
+  })
 
   const handleLineChange = useCallback(
     (attribute: ILineAttributes, attributeState?: 'over' | 'under') =>
@@ -36,18 +40,20 @@ export const useMatchMatrix = () => {
 
   const handleGetTeamData = useCallback(
     (index: number, side: 'home' | 'away') =>
-      getRecentTeamData({ match, gamesCount, side, index }),
-    [match, gamesCount]
+      getRecentTeamData({
+        match,
+        gamesCount: filtersForm.values.gamesCount,
+        side,
+        index,
+      }),
+    [match, filtersForm.values.gamesCount]
   )
 
   return {
-    gamesCount,
     match,
     lines,
-    supporterToggle,
-    handleGamesCount,
+    filtersForm,
     handleLineChange,
     handleGetTeamData,
-    handleSupporterToggle,
   }
 }

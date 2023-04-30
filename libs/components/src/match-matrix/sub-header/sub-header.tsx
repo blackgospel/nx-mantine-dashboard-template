@@ -2,14 +2,16 @@ import { Title, Tooltip } from '@mantine/core'
 import { toAbbreviation } from '@omnidash/utils'
 import { MatrixCell } from '../cell'
 import { useMatchMatrixContext } from '../match-matrix.context'
+import { useFilterFormContext } from '../match-matrix.form'
 import { IMatrixSubHeaderProps } from './sub-header.types'
 
 export const MatrixSubHeader: React.FC<IMatrixSubHeaderProps> = () => {
-  const { gamesCount, handleGetTeamData } = useMatchMatrixContext()
+  const { handleGetTeamData } = useMatchMatrixContext()
+  const form = useFilterFormContext()
 
   return (
     <>
-      {[...Array(gamesCount)].map((_, index) => {
+      {[...Array(form.values.gamesCount)].map((_, index) => {
         const {
           opposition: { team },
         } = handleGetTeamData(index, 'home')
@@ -27,7 +29,7 @@ export const MatrixSubHeader: React.FC<IMatrixSubHeaderProps> = () => {
         <Title order={5}>Opposition</Title>
       </MatrixCell>
 
-      {[...Array(gamesCount)].map((_, index) => {
+      {[...Array(form.values.gamesCount)].map((_, index) => {
         const {
           opposition: { team },
         } = handleGetTeamData(index, 'away')

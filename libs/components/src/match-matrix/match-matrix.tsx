@@ -1,7 +1,9 @@
 import { Box } from '@mantine/core'
 import { MatrixBody } from './body'
+import { FiltersWindow } from './filters-window'
 import { MatrixHeader } from './header'
 import { MatchMatrixContextProvider } from './match-matrix.context'
+import { FilterFormProvider } from './match-matrix.form'
 import { useMatchMatrix } from './match-matrix.hooks'
 import { IMatchMatrixProps } from './match-matrix.types'
 import {
@@ -13,32 +15,37 @@ import {
 import { MatrixSubHeader } from './sub-header'
 
 export const MatchMatrix: React.FC<IMatchMatrixProps> = () => {
-  const matchMatrixProps = useMatchMatrix()
-  const { gamesCount } = matchMatrixProps
+  const { filtersForm, ...matchMatrixProps } = useMatchMatrix()
 
   return (
-    <MatchMatrixContextProvider value={matchMatrixProps}>
-      <Box
-        sx={{
-          display: 'inline-grid',
-          gridTemplateColumns: `${[...Array(gamesCount)]
-            .map(() => `${MATRIX_CELL_WIDTH}px`)
-            .join(' ')} ${MATRIX_CELL_ATTRIBUTE_WIDTH}px ${[
-            ...Array(gamesCount),
-          ]
-            .map(() => `${MATRIX_CELL_WIDTH}px`)
-            .join(' ')}`,
-          gridTemplateRows: `repeat(${
-            Object.keys(MATRIX_ATTRIBUTES).length + MATRIX_HEADER_COUNT
-          }, ${MATRIX_CELL_WIDTH}px)`,
-        }}
-      >
-        <MatrixHeader />
+    <FilterFormProvider form={filtersForm}>
+      <MatchMatrixContextProvider value={matchMatrixProps}>
+        <Box
+          sx={{
+            display: 'inline-grid',
+            gridTemplateColumns: `${[...Array(filtersForm.values.gamesCount)]
+              .map(() => `${MATRIX_CELL_WIDTH}px`)
+              .join(' ')} ${MATRIX_CELL_ATTRIBUTE_WIDTH}px ${[
+              ...Array(filtersForm.values.gamesCount),
+            ]
+              .map(() => `${MATRIX_CELL_WIDTH}px`)
+              .join(' ')}`,
+            gridTemplateRows: `repeat(${
+              Object.values(MATRIX_ATTRIBUTES).filter(item =>
+                filtersForm.values.attributes.includes(item)
+              ).length + MATRIX_HEADER_COUNT
+            }, ${MATRIX_CELL_WIDTH}px)`,
+          }}
+        >
+          <MatrixHeader />
 
-        <MatrixSubHeader />
+          <MatrixSubHeader />
 
-        <MatrixBody />
-      </Box>
-    </MatchMatrixContextProvider>
+          <MatrixBody />
+
+          <FiltersWindow />
+        </Box>
+      </MatchMatrixContextProvider>
+    </FilterFormProvider>
   )
 }
