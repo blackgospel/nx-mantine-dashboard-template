@@ -9,5 +9,5 @@ export interface IAttributeLinesProps {
   state: ILineAttributesValue
 
   /** Update line attribute state */
-  onChangeLines?: ReturnType<typeof useMatchMatrix>['handleLineChange']
+  onChangeLines: ReturnType<typeof useMatchMatrix>['handleLineChange']
 }

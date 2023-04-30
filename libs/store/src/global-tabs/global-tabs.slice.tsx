@@ -36,7 +36,7 @@ export const createGlobalTabsSlice: IStateCreator<IGlobalTabsSlice> = (
     addGlobalTab: (payload: Partial<IGlobalTabItem>, open = true) =>
       set(state => {
         const item = payload ?? {}
-        const tabItem = mergeDeepRight(generateTab(), item)
+        const tabItem = mergeDeepRight(generateTab(), item) as IGlobalTabItem
         state.globalTabs.tabs = uniq([...state.globalTabs.tabs, tabItem])
         state.globalTabs.current = open ? tabItem.id : state.globalTabs.current
       }),
@@ -75,7 +75,7 @@ export const createGlobalTabsSlice: IStateCreator<IGlobalTabsSlice> = (
 
         if (!targetTab) return
 
-        const updatedTab = mergeDeepRight(targetTab, payload)
+        const updatedTab = mergeDeepRight(targetTab, payload) as IGlobalTabItem
 
         state.globalTabs.tabs = uniq(
           upsertObjectArray(updatedTab, state.globalTabs.tabs)

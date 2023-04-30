@@ -8,7 +8,7 @@ export const generateTab = (): IGlobalTabItem => {
     label: NEW_TAB.LABEL,
     state: {
       pinned: false,
-      resourceId: null,
+      resource: null,
     },
   }
 }

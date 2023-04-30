@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { hasLength, isEmail, useForm } from '@mantine/form'
 import { useToggle } from '@mantine/hooks'
-import { register } from '@omnidash/api'
-import { to } from '@omnidash/config'
+import { register, to } from '@omnidash/api'
 import { useLoading } from '@omnidash/hooks'
 import { PATH_AFTER_LOGIN } from '@omnidash/routes'
 import { IRegisterSchema } from '@omnidash/schema'

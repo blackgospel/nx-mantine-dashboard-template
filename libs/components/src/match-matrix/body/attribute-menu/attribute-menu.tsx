@@ -63,7 +63,9 @@ export const AttributeMenu: React.FC<IAttributeLinesProps> = ({
             return (
               <MenuItem
                 data-active={key === state.state}
-                onClick={() => onChangeLines(attribute, key)()}
+                onClick={() =>
+                  onChangeLines(attribute, key as 'over' | 'under')()
+                }
                 sx={{ paddingBlock: 8 }}
                 key={index}
                 primary

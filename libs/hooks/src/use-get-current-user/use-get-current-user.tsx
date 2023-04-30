@@ -1,5 +1,4 @@
-import { getCurrentUser } from '@omnidash/api'
-import { to } from '@omnidash/config'
+import { getCurrentUser, to } from '@omnidash/api'
 import { useStore } from '@omnidash/store'
 import { AxiosError, AxiosResponse } from 'axios'
 import { User } from 'next-auth'

@@ -22,7 +22,7 @@ export const useMatchMatrix = () => {
 
   const handleLineChange = useCallback(
     (attribute: ILineAttributes, attributeState?: 'over' | 'under') =>
-      (value: number) => {
+      (value?: number) => {
         setLines(state => ({
           ...state,
           [attribute]: {
@@ -37,7 +37,7 @@ export const useMatchMatrix = () => {
   const handleGetTeamData = useCallback(
     (index: number, side: 'home' | 'away') =>
       getRecentTeamData({ match, gamesCount, side, index }),
-    []
+    [match, gamesCount]
   )
 
   return {

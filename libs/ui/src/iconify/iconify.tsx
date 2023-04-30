@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
 import { Icon } from '@iconify/react'
 import { Box, Sx } from '@mantine/core'
 import React from 'react'
@@ -8,7 +10,6 @@ export const Iconify = React.forwardRef<any, IIconifyProps>(
   ({ icon, width = 20, sx, ...props }, ref) => {
     return (
       <Box
-        // @ts-ignore
         ref={ref}
         component={Icon}
         icon={icon}
