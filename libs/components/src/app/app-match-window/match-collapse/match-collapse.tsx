@@ -30,6 +30,7 @@ export const MatchCollapse: React.FC<IMatchCollapseProps> = ({
         return (
           <MenuItem
             key={match?.data?.id ?? index}
+            onClick={onClick(match.data, true)}
             sx={theme => ({
               borderBottom: `1px solid ${
                 theme.colorScheme === 'dark'
@@ -47,7 +48,7 @@ export const MatchCollapse: React.FC<IMatchCollapseProps> = ({
                 <ActionIcon
                   color={theme.primaryColor}
                   sx={{ zIndex: 4 }}
-                  onClick={onClick(match.data)}
+                  onClick={onClick(match.data, false)}
                 >
                   <Iconify
                     icon="solar:arrow-to-top-left-bold-duotone"

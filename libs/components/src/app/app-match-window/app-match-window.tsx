@@ -28,17 +28,21 @@ export const AppMatchWindow: React.FC<IAppMatchWindowProps> = ({ data }) => {
   )
 
   const handleClick =
-    (match: IMatchData) => (event: React.MouseEvent<HTMLElement>) => {
+    (match: IMatchData, open?: boolean) =>
+    (event: React.MouseEvent<HTMLElement>) => {
       event.stopPropagation()
-      addGlobalTab({
-        label: `${match.homeTeam.name} vs ${match.awayTeam.name}`,
-        state: {
-          resource: {
-            id: match.id,
-            type: 'match',
+      addGlobalTab(
+        {
+          label: `${match.homeTeam.name} vs ${match.awayTeam.name}`,
+          state: {
+            resource: {
+              id: match.id,
+              type: 'match',
+            },
           },
         },
-      })
+        open
+      )
     }
 
   if (!data || initialize) return null

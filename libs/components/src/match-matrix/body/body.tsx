@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { useFilterFormContext } from '../match-matrix.form'
 import { MATRIX_ATTRIBUTES } from '../matrix-matrix.constants'
 import { MatrixBodyAttributeCell } from './attribute-cell'
@@ -14,13 +15,13 @@ export const MatrixBody: React.FC<IMatrixBodyProps> = () => {
         .filter(item => form.values.attributes.includes(item))
         .map(attribute => {
           return (
-            <>
+            <Fragment key={attribute}>
               <MatrixBodyHomeCells attribute={attribute} />
 
               <MatrixBodyAttributeCell attribute={attribute} />
 
               <MatrixBodyAwayCells attribute={attribute} />
-            </>
+            </Fragment>
           )
         })}
     </>

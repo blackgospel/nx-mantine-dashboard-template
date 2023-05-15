@@ -23,6 +23,5 @@ export const formatMatches = (): IMatchDataArray => {
     }
   })
 
-  console.log({ formattedMatches })
   return formattedMatches
 }

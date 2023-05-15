@@ -4,7 +4,7 @@ import {
   Divider,
   Group,
   Radio,
-  Slider,
+  SegmentedControl,
   Stack,
   Text,
 } from '@mantine/core'
@@ -16,12 +16,8 @@ import { MATRIX_ATTRIBUTES } from '../matrix-matrix.constants'
 export const FiltersWindow = () => {
   const form = useFilterFormContext()
 
-  console.log({
-    hi: form.getInputProps('attributes'),
-  })
-
   return (
-    <FloatingWindow>
+    <FloatingWindow initialState={false}>
       <Stack sx={{ padding: 16 }}>
         <Checkbox
           label={
@@ -49,15 +45,16 @@ export const FiltersWindow = () => {
           <Text size="sm" mb="xs">
             Last number of games
           </Text>
-          <Slider
-            defaultValue={10}
-            min={1}
-            max={10}
-            step={1}
-            marks={[...Array(10)].map((_, index) => {
-              return { value: index + 1 }
-            })}
-            {...form.getInputProps('gamesCount')}
+          <SegmentedControl
+            data={[
+              { value: '1', label: '1' },
+              { value: '3', label: '3' },
+              { value: '5', label: '5' },
+              { value: '7', label: '7' },
+              { value: '10', label: '10' },
+            ]}
+            value={form.getInputProps('gamesCount').value}
+            onChange={value => form.getInputProps('gamesCount').onChange()}
           />
         </Box>
 
@@ -73,13 +70,13 @@ export const FiltersWindow = () => {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <Checkbox.Group label={<Text color="dimmed">Competition Filter</Text>}>
+        {/* <Checkbox.Group label={<Text color="dimmed">Competition Filter</Text>}>
           <Group mt="xs">
             <Checkbox disabled value="premierLeague" label="Premier League" />
           </Group>
         </Checkbox.Group>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+        <Divider sx={{ borderStyle: 'dashed' }} /> */}
 
         <Checkbox.Group
           label="Attribute Filter"
