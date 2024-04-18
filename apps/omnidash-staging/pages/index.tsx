@@ -1,12 +1,8 @@
-'use client'
-import { useRouter } from 'next/router'
+import { redirect } from 'next/navigation'
 
 const Index = () => {
-  const router = useRouter()
 
-  router.push('/dashboard/app')
-
-  return <></>
+  redirect('/dashboard/app')
 }
 
 export default Index
