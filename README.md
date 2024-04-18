@@ -58,14 +58,3 @@ git commit -m 'Add some YourFeature'
 
 # Push to the branch
 git push origin feature/YourFeature
-
-# Open a Pull Request
-License
-
-This template is open-sourced under the MIT License which permits personal and commercial use, modifications, distribution, and private use.
-
-Support
-
-For support, open an issue on the GitHub repository for help or to suggest improvements.
-
-This template provides all necessary tools to create a high-quality dashboard using React and Mantine, backed by Nx for superior project management in a monorepo setup.
