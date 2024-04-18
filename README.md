@@ -1,9 +1,71 @@
-# OmnixenonDashboard
+Nx Mantine Dashboard Template
 
-Omnixenon Dashboard is templated dashboard displaying a matrix for statistics that each team has faced within their previous fixtures.
+Introduction
 
-The dashboard works using a global tab system in which you can setup the fixtures you want to look at in a tab which is displayed in the header at the top of the viewport. This can be clicked on later when you want to switch between different fixtures.
+This GitHub repository is designed as a template for creating dashboards using the Mantine UI library within an Nx workspace. It provides a robust starting point for developers looking to build interactive, feature-rich dashboards in React.
 
-## Development server
+Technologies Used
 
-Run `nx serve omnidash` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Nx: Powerful set of extensible dev tools for monorepos.
+Mantine: A modern React component library for building faster, more reliable user interfaces.
+React: A JavaScript library for building user interfaces.
+TypeScript: A typed superset of JavaScript that compiles to plain JavaScript.
+Features
+
+This dashboard template includes:
+
+Dashboard Layout: Basic setup including headers, footers, and sidebar navigation using Mantine components.
+Theme Customization: Leverages Mantine's theming capabilities to customize the appearance.
+Responsive Design: Ensures the dashboard is functional and looks great on all device sizes.
+Installation
+
+To get started with this dashboard template, clone the repository and install the required dependencies:
+
+bash
+Copy code
+# Clone the repository
+git clone https://github.com/blackgospel/nx-mantine-dashboard-template.git
+
+# Navigate into the project directory
+cd nx-mantine-dashboard-template
+
+# Install dependencies
+npm install
+
+# Serve the application
+nx serve
+Usage
+
+Develop and integrate new features, or modify existing components. Mantine provides a wide range of UI components that are easily customizable to build complex layouts and features efficiently.
+
+Structure
+
+Apps and Libraries: Organized in applications and libraries directories within the Nx workspace.
+Components and Hooks: Utilizes Mantine’s components and hooks to facilitate rapid development with consistent styling.
+Customization: Supports extensive customization of themes to apply specific styles and colors throughout the application.
+Contributing
+
+Contributions are welcome to enhance the template's capabilities:
+
+bash
+Copy code
+# Fork the project
+# Create your feature branch
+git checkout -b feature/YourFeature
+
+# Commit your changes
+git commit -m 'Add some YourFeature'
+
+# Push to the branch
+git push origin feature/YourFeature
+
+# Open a Pull Request
+License
+
+This template is open-sourced under the MIT License which permits personal and commercial use, modifications, distribution, and private use.
+
+Support
+
+For support, open an issue on the GitHub repository for help or to suggest improvements.
+
+This template provides all necessary tools to create a high-quality dashboard using React and Mantine, backed by Nx for superior project management in a monorepo setup.
