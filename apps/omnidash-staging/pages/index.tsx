@@ -1,5 +1,11 @@
+import { useRouter } from 'next/router'
+
 const Index = () => {
-  return <div>Omnidash</div>
+  const router = useRouter()
+
+  router.push('/dashboard/app')
+
+  return <></>
 }
 
 export default Index
