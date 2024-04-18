@@ -20,7 +20,8 @@ const App: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
 
   useEffect(() => {
     router.push('/dashboard/app')
-  }, [router])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <SessionProvider>
