@@ -1,8 +1,5 @@
-import { redirect } from 'next/navigation'
-
 const Index = () => {
-
-  redirect('/dashboard/app')
+  return <></>
 }
 
 export default Index

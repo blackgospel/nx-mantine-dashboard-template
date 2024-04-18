@@ -4,7 +4,8 @@ import { RouterTransition } from '@omnidash/ui'
 import type { NextComponentType } from 'next'
 import { SessionProvider } from 'next-auth/react'
 import { AppContext, AppInitialProps, AppLayoutProps } from 'next/app'
-import { ReactNode } from 'react'
+import { useRouter } from 'next/router'
+import { ReactNode, useEffect } from 'react'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
@@ -15,6 +16,11 @@ const App: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
 }: AppLayoutProps) => {
   const getLayout = Component.getLayout || ((page: ReactNode) => page)
   useInitializeTabs()
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/dashboard/app')
+  }, [router])
 
   return (
     <SessionProvider>
